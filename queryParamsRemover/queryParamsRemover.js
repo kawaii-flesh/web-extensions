@@ -5,24 +5,30 @@
 "use strict";
 
 function stripBadQueryParams(request) {
-  // console.log("Intercepting this request: ", JSON.stringify(request));
-
   const targetQueryParams = ["fbclid", "gclid", "ysclid", "utm_source", "utm_medium", "utm_term",
-                             "utm_campaign",  "utm_content", "utm_name", "utm_id",
-                             "__cft__[0]", "__tn__"];
+                            "utm_campaign",  "utm_content", "utm_name", "utm_id",
+                            "__cft__[0]", "__tn__", "si"];
 
   let requestedUrl = new URL(request.url);
   let match = false;
 
-  targetQueryParams.forEach(name => {
-    if (requestedUrl.searchParams.has(name)) {
-      requestedUrl.searchParams.delete(name);
+  for (const paramName of targetQueryParams) {
+    if (requestedUrl.searchParams.has(paramName)) {
+      requestedUrl.searchParams.delete(paramName);
       match = true;
     }
-  });
+  }
 
   // Return the stripped URL if a match is found. Otherwise, pass the URL on as normal {cancel: false}
-  return match ? { redirectUrl: requestedUrl.href } : { cancel: false };
+  if (match) {
+    return {
+      redirectUrl: requestedUrl.href
+    };
+  } else {
+    return {
+      cancel: false
+    };
+  }
 }
 
 /**
