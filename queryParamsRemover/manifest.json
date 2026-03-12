@@ -18,13 +18,13 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "queryParamsRemover@kawaii-flesh.git.com"
+      "id": "queryParamsRemover@kawaii-flesh.git.com",
+      "data_collection_permissions": ["none"]
     }
   },
   "browser_action": {
     "default_icon": "icons/noFbclidUtmIcon.png",
     "default_title": "URL Cleaner",
     "default_popup": "popup.html"
-  },
-  "data_collection_permissions": ["none"]
+  }
 }
