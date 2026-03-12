@@ -1,18 +1,29 @@
 {
+  "manifest_version": 2,
   "name": "Remove FBclid and UTM",
-  "version": "1.3",
+  "version": "2.0",
   "description": "Removes fbclid, ysclid, gclid, and utm_ query parameters in URLs.",
   "icons": {
     "48": "icons/noFbclidUtmIcon.png"
   },
-  "background": {
-    "scripts": ["queryParamsRemover.js"]
-  },
   "permissions": [
+    "storage",
     "webRequest",
     "webRequestBlocking",
     "http://*/*",
     "https://*/*"
   ],
-  "manifest_version": 2
+  "background": {
+    "scripts": ["defaults.js", "background.js"]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "queryParamsRemover@kawaii-flesh.git.com"
+    }
+  },
+  "browser_action": {
+    "default_icon": "icons/noFbclidUtmIcon.png",
+    "default_title": "URL Cleaner",
+    "default_popup": "popup.html"
+  }
 }
